@@ -1,0 +1,17 @@
+.bordered {
+    border:1px solid black;
+}
+
+tr {
+    font-size: 0.90rem;
+}
+td p {
+    margin:0;
+}
+
+.t2 {
+    border:1px solid salmon;
+}
+.t2 > div {
+    border: 1px solid lightgray;
+}

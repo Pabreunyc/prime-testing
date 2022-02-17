@@ -1,0 +1,11 @@
+<p>child02 works!</p>
+<div>
+    <button (click)="getData()">Get Data</button>
+
+    <ol>
+        <li *ngFor="let d of data; let isFirst = first">
+            <span *ngIf="isFirst">***</span>
+            <b>-:</b><span (click)="deleteItem(d)">{{d.message}}</span>
+        </li>
+    </ol>
+</div>

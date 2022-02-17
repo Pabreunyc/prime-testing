@@ -1,0 +1,22 @@
+<header style='border-bottom:1px solid lightgray'>    
+    <child03></child03>
+</header>
+
+<p>Random: [{{random}}]</p>
+<input type="text" placeholder="Enter something" #somethingRef>
+<button (click)='updateData(somethingRef.value)'>Update Data</button>
+
+<br /><button (click)='switchChild()' class='button'>Switch Child</button>
+<hr /><hr />
+
+<ng-container *ngIf="showCurrentComponent=='child01'">
+    <child01>
+    </child01>
+</ng-container>
+
+<hr />
+
+<ng-container *ngIf="showCurrentComponent=='child02'">
+    <child02>
+    </child02>
+</ng-container>

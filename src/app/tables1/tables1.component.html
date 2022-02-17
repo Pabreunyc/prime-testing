@@ -1,0 +1,172 @@
+<main class='p-grid'>
+
+<div class='p-col-12'>
+    <div class="p-formgroup-inline">
+        <div class="p-field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                <input type="text" pInputText placeholder="Name, Plate" 
+                    (input)="pt.filterGlobal($event.target.value, 'contains')">
+            </div>
+        </div>
+        <div class="p-field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon" style="line-height: 1.25;">W/Plates?</span>
+                <p-dropdown id="platesId" [options]="plateStatusSelect"
+                    placeholder="-- Select --" [showClear]="true"
+                    (onChange)='selectWithPlates($event.value)'>
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon" style="line-height: 1.25;">Zone:</span>
+                <p-dropdown [options]="parkingZones"
+                    placeholder="-- Select --" [showClear]="true"
+                    (onChange)='filterByParkingZone($event)'>
+                </p-dropdown>
+            </div>
+        </div>
+        <div class="p-field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">Employee:</span>
+                <p-dropdown [options]="employeeTypeSelect"
+                (onChange)="pt.filter($event.value, 'user_id', 'isEmployee')"
+                    placeholder="-- Select --" [showClear]="true">
+                </p-dropdown>
+            </div>
+        </div>
+    </div>
+</div> <!-- grid -->
+
+<div class='p-col-12'>
+    <div class='p-grid'>
+        <div class='p-col-12 p-md-12 p-lg-6 bordered'>
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
+                <input type="text" pInputText placeholder="Name, Plate" 
+                    (input)="pt.filterGlobal($event.target.value, 'contains')">
+            </div>
+        </div>
+        <div class='p-col-12 p-md-12 p-lg-6 bordered'>
+            <div class="p-formgroup-inline">
+                <div class="p-field">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon" style="line-height: 1.25;">W/Plates?</span>
+                        <p-dropdown id="platesId" [options]="plateStatusSelect"
+                            placeholder="-- Select --" [showClear]="true"
+                            (onChange)='selectWithPlates($event.value)'>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="p-field">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon" style="line-height: 1.25;">Zone:</span>
+                        <p-dropdown [options]="parkingZones" optionLabel="parking_zone_name"
+                            placeholder="-- Select --" [showClear]="true"
+                            (onChange)='filterByParkingZone($event)'>
+                        </p-dropdown>
+                    </div>
+                </div>
+                <div class="p-field">
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">Employee:</span>
+                        <p-dropdown [options]="employeeTypeSelect"
+                            placeholder="-- Select --" [showClear]="true">
+                        </p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class='p-col-12'>
+    <p-table #pt id="permits_Id" class="sticky-table" 
+        [value]='data' [loading]="loading"
+        selectionMode="single" [(selection)]="selectedRow"
+        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
+        [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
+        [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
+        [globalFilterFields]="['emp_full_name', 'plate_number']"
+        rowHover="true">
+
+        <ng-template pTemplate="caption">
+            <div class='p-grid' id="filtersRow">
+                <div class="p-col-4">
+                    <div class="p-inputgroup" style="float:right">
+                        <span class="p-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
+                        <input type="text" pInputText placeholder="Name, Plate" 
+                            (input)="pt.filterGlobal($event.target.value, 'contains')">
+                    </div>
+                </div>
+                <div class="p-col-4">
+                    &nbsp;
+                </div>
+                <div class="p-col">
+                    <div class="p-formgroup-inline">
+                        <div class="p-field">
+                            <label for="firstname" class="p-sr-only">Firstname</label>
+                            <input id="firstname" type="text" pInputText placeholder="Firstname"> 
+                        </div>
+                        <div class="p-field">
+                            <label for="lastname" class="p-sr-only">Lastname</label>
+                            <input id="lastname" type="text" pInputText placeholder="Lastname"> 
+                        </div>
+                        <button pButton type="button" label="Submit"></button>
+                    </div>
+                </div>                    
+                <!--
+                <div class='p-col-12'>
+                    <ul class="navList">
+                        <li>First Initial:</li>
+                        <li *ngFor="let letter of letters">
+                            <span [class.active]="currentLetter==letter" (click)='filterByLetter(letter)'>{{letter}}</span>
+                        </li>
+                    </ul>
+                </div>
+                -->
+            </div>                
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:4em">#</th>
+                <th pSortableColumn="emp_full_name">
+                    Name
+                    <p-sortIcon field="emp_full_name" 
+                        ariaLabel="Activate to sort" 
+                        ariaLabelDesc="Sort Employees in descending order" 
+                        ariaLabelAsc="Sort Employees in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="plate_number">Plate
+                    <p-sortIcon field="plate_number" 
+                        ariaLabel="Activate to sort" 
+                        ariaLabelDesc="Activate to sort in descending order" 
+                        ariaLabelAsc="Activate to sort in ascending order">
+                    </p-sortIcon>
+                </th>
+                <th style="width:9em">Zone</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate='body' let-rowData let-ri='rowIndex'>
+            <tr [pSelectableRow]="rowData">
+                <td>{{ri + 1}}</td>
+                <td>
+                    {{rowData.emp_full_name | titlecase}} ({{rowData.user_id}}) [{{rowData.opp_id}}]
+                    <p style='font-size:smaller; text-indent:1rem; margin-bottom:0;'>
+                        {{rowData.emp_title}}
+                        <span *ngIf="!((rowData.emp_team_unit == null) || (rowData.emp_team_unit == ''))">
+                            @{{rowData.emp_team_unit}}
+                        </span>
+                    </p>                
+                </td>
+                <td>{{rowData.plate_number}}</td>
+                <td>{{rowData.parking_zone_name}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+</main>

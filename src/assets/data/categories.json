@@ -1,0 +1,47 @@
+[
+    {
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help"
+    },
+    {
+        "ticket_category": "CAD",
+        "ticket_cat_id": 2,
+        "ticket_cat_detail": "AutoCAD Installation"
+    },
+    {
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk"
+    },
+    {
+        "ticket_category": "CBG",
+        "ticket_cat_id": 4,
+        "ticket_cat_detail": "CBG Add Standard Alternate Upload"
+    },
+    {
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services"
+    },
+    {
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations"
+    },
+    {
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT"
+    },
+    {
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help"
+    },
+    {
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 7,
+        "ticket_cat_detail": "Unifier User Account Creation Request"
+    }
+]

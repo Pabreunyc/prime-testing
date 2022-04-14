@@ -12,13 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { Tables1Component } from './tables1/tables1.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { TemplatesDemoComponent } from './templates-demo/templates-demo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Tables1Component,
     HomeComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    TemplatesDemoComponent
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,8 @@ import { __metadata } from 'tslib';
 // get list of random ints: 1-6
 // https://www.random.org/integers/?num=10&min=1&max=6&col=1&base=10&format=plain&rnd=new
 
+const ASSETS_URL = 'http://localhost/assets/'
+
 @Injectable({
   providedIn: 'root'
 })

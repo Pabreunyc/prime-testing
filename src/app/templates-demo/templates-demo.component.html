@@ -1,0 +1,68 @@
+<section class="p-grid p-fluid">
+    <div class="p-col-4" style="border:1px solid black">
+        <p-dropdown id="categoryId" 
+            [options]="categories" optionLabel="ticket_cat_detail" optionValue="ticket_cat_id"
+            placeholder="-- Select --" [showClear]="true"
+            (onChange)='selectCategory($event)'>
+        </p-dropdown>
+        <p-dropdown id="productId" 
+            [options]="products" optionLabel="ticket_sub_cat_detail" optionValue="ticket_cat_id"
+            placeholder="-- Select --" [showClear]="true"
+            (onChange)='selectProduct($event)'>
+        </p-dropdown>
+    </div>
+
+    
+    <div class="p-col" id="formContainerID">
+    <form #ngForm="ngForm" [formGroup]="parentFG" (ngSubmit)='onSubmit($event)'>
+        <h5>Templates: [{{displayTemplate}}]</h5>
+
+        <section class="p-grid p-fluid">
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                    <input type="text" pInputText placeholder="Username" formControlName="fc_username">
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                    <input type="text" pInputText placeholder="E-Mail" formControlName="fc_email">
+                </div>
+            </div>
+        </section>
+
+        <section class="p-grid p-fluid">
+            <div class="p-col-12">
+                <ng-container></ng-container>
+            </div>
+        </section>
+
+        <section class="p-grid p-fluid">
+            <div class="p-col-12">
+                <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
+            </div>
+        </section>
+    </form>
+    </div>
+</section>
+
+<ng-template #wi_platesTemplate>
+    <p>This is With Plates</p>
+</ng-template>
+<ng-template #wo_platesTemplate>
+    No Plates<br />No Plates<br />No Plates<br />
+</ng-template>
+<ng-template #all_platesTemplate>
+    <p>Everything is here! Everything is here! Everything is here! Everything is here!</p>
+</ng-template>
+<ng-template #defaultTemplate>
+    Oh well, this is the default.
+</ng-template>
+
+<ng-template>
+    <section class="p-grid p-fluid" style="border:1px solid salmon; width: 98%; margin: 0 auto;">
+    
+    
+    </section>
+</ng-template>

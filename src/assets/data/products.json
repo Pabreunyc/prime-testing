@@ -1,0 +1,331 @@
+[
+    {
+        "id": 21,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 2,
+        "ticket_cat_detail": "AutoCAD Installation",
+        "ticket_sub_cat_detail": "AutoCAD Installation"
+    },
+    {
+        "id": 25,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "File Issue"
+    },
+    {
+        "id": 22,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "General Help"
+    },
+    {
+        "id": 24,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "Network Issue"
+    },
+    {
+        "id": 27,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "Other"
+    },
+    {
+        "id": 26,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "Printing Issue"
+    },
+    {
+        "id": 23,
+        "ticket_category": "CAD",
+        "ticket_cat_id": 1,
+        "ticket_cat_detail": "AutoCAD Help",
+        "ticket_sub_cat_detail": "Software Issue"
+    },
+    {
+        "id": 36,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "Bucket List"
+    },
+    {
+        "id": 41,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 4,
+        "ticket_cat_detail": "CBG Add Standard Alternate Upload",
+        "ticket_sub_cat_detail": "CBG Add Standard Alternate Upload"
+    },
+    {
+        "id": 33,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "File Issue"
+    },
+    {
+        "id": 31,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "General Help"
+    },
+    {
+        "id": 35,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "Other"
+    },
+    {
+        "id": 34,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "Print Book"
+    },
+    {
+        "id": 32,
+        "ticket_category": "CBG",
+        "ticket_cat_id": 3,
+        "ticket_cat_detail": "CBG Helpdesk",
+        "ticket_sub_cat_detail": "Software Issue"
+    },
+    {
+        "id": 120,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Contract Book Print Request"
+    },
+    {
+        "id": 121,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Contract Book Scan Request"
+    },
+    {
+        "id": 124,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Document Binding"
+    },
+    {
+        "id": 122,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Large Format Print Request"
+    },
+    {
+        "id": 123,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Large Format Scan Request"
+    },
+    {
+        "id": 125,
+        "ticket_category": "Document Services",
+        "ticket_cat_id": 12,
+        "ticket_cat_detail": "Document Services",
+        "ticket_sub_cat_detail": "Other Request"
+    },
+    {
+        "id": 103,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Building Maintenance/Repairs"
+    },
+    {
+        "id": 104,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Exterior/Grounds"
+    },
+    {
+        "id": 101,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Fleet"
+    },
+    {
+        "id": 102,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Janitorial"
+    },
+    {
+        "id": 109,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Other"
+    },
+    {
+        "id": 108,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Parking"
+    },
+    {
+        "id": 106,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Supply Requests"
+    },
+    {
+        "id": 107,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Telecom"
+    },
+    {
+        "id": 105,
+        "ticket_category": "Olmsted Operations",
+        "ticket_cat_id": 10,
+        "ticket_cat_detail": "Olmsted Operations",
+        "ticket_sub_cat_detail": "Work Station & Space Issues/Requests"
+    },
+    {
+        "id": 119,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "Bucket List"
+    },
+    {
+        "id": 115,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "CP Package"
+    },
+    {
+        "id": 112,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "CP/CAS-P"
+    },
+    {
+        "id": 116,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "FMS Lookup"
+    },
+    {
+        "id": 113,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "IFA"
+    },
+    {
+        "id": 117,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "Major Projects"
+    },
+    {
+        "id": 118,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "Other"
+    },
+    {
+        "id": 114,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "Reports"
+    },
+    {
+        "id": 111,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "Transfer"
+    },
+    {
+        "id": 110,
+        "ticket_category": "SPROUT",
+        "ticket_cat_id": 11,
+        "ticket_cat_detail": "SPROUT",
+        "ticket_sub_cat_detail": "User Permission"
+    },
+    {
+        "id": 61,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 7,
+        "ticket_cat_detail": "Unifier User Account Creation Request",
+        "ticket_sub_cat_detail": "Account Creation"
+    },
+    {
+        "id": 65,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "Application Error"
+    },
+    {
+        "id": 62,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "BP/Workflow Error"
+    },
+    {
+        "id": 64,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "End-User Data Entry Errors"
+    },
+    {
+        "id": 68,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "Field Update Request"
+    },
+    {
+        "id": 63,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "Information Request"
+    },
+    {
+        "id": 66,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "Other"
+    },
+    {
+        "id": 67,
+        "ticket_category": "Unifier",
+        "ticket_cat_id": 6,
+        "ticket_cat_detail": "Unifier Help",
+        "ticket_sub_cat_detail": "Termination Request"
+    }
+]

@@ -10,7 +10,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "check-env": "node x"
+    "check-env": "node check_env.js",
+    "env": "env"
   },
   "private": true,
   "dependencies": {

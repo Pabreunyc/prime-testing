@@ -34,22 +34,33 @@
 
         <section class="p-grid p-fluid">
             <div class="p-col-12">
-                <ng-container></ng-container>
+                <ng-container [ngTemplateOutlet]="displayTemplate"></ng-container>
             </div>
         </section>
 
-        <section class="p-grid p-fluid">
+        <section class="p-grid">
             <div class="p-col-12">
                 <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
             </div>
         </section>
+
+        <ng-template #docservicesOptions>
+            <section class="p-grid" style="border:1px solid salmon; width: 98%; margin: 0 auto;" formGroupName="docservices">
+                <div class="p-col-12">
+                    <input pInputText type="text" formControlName="fc_dsCBGContractNo">
+                </div>
+                <div class="p-col-4"><label>Full/Half Size</label></div>
+                <div class="p-col-8">
+                    <p-dropdown [options]="optsYNOther" placeholder="Select" [showClear]="true" formControlName="fc_dsIsFullSize">
+                    </p-dropdown>
+                </div>
+            </section>
+        </ng-template>
     </form>
     </div>
 </section>
 
-<ng-template #wi_platesTemplate>
-    <p>This is With Plates</p>
-</ng-template>
+
 <ng-template #wo_platesTemplate>
     No Plates<br />No Plates<br />No Plates<br />
 </ng-template>
@@ -57,12 +68,7 @@
     <p>Everything is here! Everything is here! Everything is here! Everything is here!</p>
 </ng-template>
 <ng-template #defaultTemplate>
-    Oh well, this is the default.
-</ng-template>
-
-<ng-template>
-    <section class="p-grid p-fluid" style="border:1px solid salmon; width: 98%; margin: 0 auto;">
-    
-    
-    </section>
+    <div style="background-color:aqua; color:black;">
+        Oh well, this is the default.
+    </div>
 </ng-template>

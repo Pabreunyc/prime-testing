@@ -1,0 +1,29 @@
+<form #userForm="ngForm"  (ngSubmit)="onSubmit(userForm)" novalidate>
+<section class="p-grid p-nogutter">
+    <div class="p-col-6">
+        <div class="p-input-filled">
+            <input pInputText type="text" name="firstName" 
+                [(ngModel)]="user.firstName">
+        </div>
+    </div>
+    <div class="p-col-6">
+        <div class="p-input-filled">
+            <input pInputText type="text" name="lastName" 
+            [(ngModel)]="user.lastName">
+        </div>
+    </div>
+
+    <div class="p-offset-3"></div>
+    <div class="p-col-6">
+        <div class="p-input-filled">
+            <input pInputText type="text" name="username" [(ngModel)]="user.username">
+        </div>
+    </div>
+    <div class="p-offset-3"></div>
+
+    <div class="p-col-12">
+        <button pButton pRipple type="submit" label="Submit" class="p-button-outlined p-button-secondary">
+        </button>
+    </div>
+</section>
+</form>

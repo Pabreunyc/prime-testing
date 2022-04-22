@@ -1,0 +1,8 @@
+section {
+    border:1px solid lightgray;
+}
+input[type='text'] {
+    background-color: blanchedalmond;
+    width:98%;
+    margin:0 auto;
+}

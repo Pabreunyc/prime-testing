@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { Tables1Component } from './tables1/tables1.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { TemplatesDemoComponent } from './templates-demo/templates-demo.component';
+import { FormsComponent } from './forms/forms.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TemplatesDemoComponent } from './templates-demo/templates-demo.componen
     Tables1Component,
     HomeComponent,
     NotfoundComponent,
-    TemplatesDemoComponent
+    TemplatesDemoComponent,
+    FormsComponent
   ],
   imports: [
     BrowserModule,

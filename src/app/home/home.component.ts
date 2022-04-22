@@ -1,5 +1,5 @@
 import { Component, OnInit, VERSION } from '@angular/core';
-
+import { AppRoutingModule,routes } from '../app-routing.module';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('AppRoutingModule:', AppRoutingModule);
+    console.log('AppRoutingModule:', routes);
   }
 
 }

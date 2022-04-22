@@ -4,7 +4,10 @@
 
 export const environment = {
   appTitle: "Prime Test App [dev]",
-  production: false
+  production: false,
+
+  api: '',
+  cpsa_api: 'http://localhost:8080'
 };
 
 /*

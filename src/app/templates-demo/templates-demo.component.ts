@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild, AfterContentInit } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 
 import * as categoriesJson from '../../assets/data/categories.json';
@@ -11,10 +11,10 @@ import * as productsJson from '../../assets/data/products.json';
   templateUrl: './templates-demo.component.html',
   styleUrls: ['./templates-demo.component.css']
 })
-export class TemplatesDemoComponent implements OnInit, AfterViewInit {
+export class TemplatesDemoComponent implements OnInit, AfterViewInit, AfterContentInit  {
   //@ViewChild(TemplateRef) "wo_platesTemplate";
-  @ViewChild("defaultTemplate") defaultTemplateRef:TemplateRef<any>;
-  @ViewChild("docservicesOptions") docservicesOptionsTemplateRef:TemplateRef<any>;
+  @ViewChild("defaultTemplate", {static:true}) defaultTemplateRef:TemplateRef<any>;
+  @ViewChild("docservicesOptions", {static:true}) docservicesOptionsTemplateRef:TemplateRef<any>;
 
   public categories:any = [];
   public products:SelectItem[] = [];
@@ -23,6 +23,7 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit {
   public displayCBGOptions:boolean = false;
   public displayDocServiceOptions:boolean = false;
   public displayTemplate:TemplateRef<any> = null;
+  public dispTemp = '';
 
   public parentFG:FormGroup = null;
   public docservicesFG:FormGroup = null;
@@ -30,13 +31,15 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit {
   public optsYNOther:SelectItem[] = [ {value:'no', label:'No'}, {value:'yes', label:'Yes'}, {value:'other', label:'Other'}];
 
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) { }
   ngOnInit(): void {
     this._init();
-    this.displayTemplate = this.defaultTemplateRef;
   }
   ngAfterViewInit(): void {
+  }
+  ngAfterContentInit(): void {
+    this.displayTemplate = this.defaultTemplateRef;
   }
   
 // ============================================================================
@@ -51,10 +54,12 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit {
 
     this.products = this.productsAll.filter(e => e.ticket_cat_id === catId);
 
-    if(catId === 12)
+    if(catId === 12) {
       this.displayTemplate = this.docservicesOptionsTemplateRef;
-    else
+      this.dispTemp = 'docservices';
+    } else {
       this.displayTemplate = this.defaultTemplateRef;
+    }
   }
   selectProduct(evt:SelectItem) {
     console.log('selectProduct:', evt);

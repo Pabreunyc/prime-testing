@@ -9,11 +9,13 @@ import { environment } from 'src/environments/environment';
 export class AppComponent {
   public getScreenWidth;
   public getScreenHeight;
+  
   constructor() {
 
   }
   //title = 'prime-testing';
-  title = environment.appTitle;
+  public title = environment.appTitle;
+  public version = VERSION.full;
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {

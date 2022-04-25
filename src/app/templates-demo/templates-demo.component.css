@@ -5,3 +5,7 @@
 #formContainerID section {
     border: 1px solid green;
 }
+
+.p-button {
+    width:fit-content !important
+}

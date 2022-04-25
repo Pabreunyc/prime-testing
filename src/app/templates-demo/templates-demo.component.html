@@ -1,4 +1,4 @@
-<section class="p-grid p-fluid">
+<section class="p-grid p-nogutter p-fluid">
     <div class="p-col-4" style="border:1px solid black">
         <p-dropdown id="categoryId" 
             [options]="categories" optionLabel="ticket_cat_detail" optionValue="ticket_cat_id"
@@ -13,18 +13,18 @@
     </div>
 
     
-    <div class="p-col" id="formContainerID">
+    <div class="p-col-8" id="formContainerID">
     <form #ngForm="ngForm" [formGroup]="parentFG" (ngSubmit)='onSubmit($event)'>
-        <h5>Templates: [{{displayTemplate}}]</h5>
+        <h5>Templates:</h5>
 
-        <section class="p-grid p-fluid">
-            <div class="p-col-12 p-md-6">
+        <section class="p-grid p-nogutter p-fluid">
+            <div class="p-col">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                     <input type="text" pInputText placeholder="Username" formControlName="fc_username">
                 </div>
             </div>
-            <div class="p-col-12 p-md-6">
+            <div class="p-col">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                     <input type="text" pInputText placeholder="E-Mail" formControlName="fc_email">
@@ -32,41 +32,39 @@
             </div>
         </section>
 
-        <section class="p-grid p-fluid">
-            <div class="p-col-12">
-                <ng-container [ngTemplateOutlet]="displayTemplate"></ng-container>
+        <section class="p-grid p-nogutter p-fluid" *ngIf="dispTemp === 'docservices'">
+            <div class="p-col-12" >
+                <ng-container [ngTemplateOutlet]="docservicesOptions"  [ngTemplateOutletContext]="{form:parentFG}"></ng-container>
             </div>
         </section>
 
-        <section class="p-grid">
+        <section class="p-grid p-nogutter p-fluid">
             <div class="p-col-12">
                 <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
             </div>
         </section>
-
-        <ng-template #docservicesOptions>
-            <section class="p-grid" style="border:1px solid salmon; width: 98%; margin: 0 auto;" formGroupName="docservices">
-                <div class="p-col-12">
-                    <input pInputText type="text" formControlName="fc_dsCBGContractNo">
-                </div>
-                <div class="p-col-4"><label>Full/Half Size</label></div>
-                <div class="p-col-8">
-                    <p-dropdown [options]="optsYNOther" placeholder="Select" [showClear]="true" formControlName="fc_dsIsFullSize">
-                    </p-dropdown>
-                </div>
-            </section>
-        </ng-template>
     </form>
     </div>
 </section>
 
-
-<ng-template #wo_platesTemplate>
-    No Plates<br />No Plates<br />No Plates<br />
+<!-- ============================== -->
+<ng-template #docservicesOptions let-form="form">
+    <section class="p-grid" style="border:1px solid salmon; width: 98%; margin: 0 auto;">
+        <div class="p-12">{{form |json}}</div>
+        <div class="p-col-6">
+            <label for="paperSizeID">Full/Half/Custom Size</label>
+        </div>
+        <div class="p-col-6">
+            <p-dropdown [options]="optsYNOther" placeholder="Select" [showClear]="true" formControl="docservices.fc_dsIsFullSize">
+            </p-dropdown>
+        </div>
+    </section>
 </ng-template>
+<!-- ============================== -->
 <ng-template #all_platesTemplate>
     <p>Everything is here! Everything is here! Everything is here! Everything is here!</p>
 </ng-template>
+<!-- ============================== -->
 <ng-template #defaultTemplate>
     <div style="background-color:aqua; color:black;">
         Oh well, this is the default.

@@ -1,22 +1,22 @@
-<form #userForm="ngForm"  (ngSubmit)="onSubmit(userForm)" novalidate>
+<form #userForm="ngForm" [formGroup]="myForm" (ngSubmit)="onSubmit(userForm)" novalidate> 
 <section class="p-grid p-nogutter">
     <div class="p-col-6">
         <div class="p-input-filled">
-            <input pInputText type="text" name="firstName" 
-                [(ngModel)]="user.firstName">
+            <input pInputText type="text" formControlName="first_name">
         </div>
     </div>
     <div class="p-col-6">
         <div class="p-input-filled">
-            <input pInputText type="text" name="lastName" 
-            [(ngModel)]="user.lastName">
+            <input pInputText type="text" formControlName="last_name">
         </div>
     </div>
+
+    <div class="flex-break"></div>
 
     <div class="p-offset-3"></div>
     <div class="p-col-6">
         <div class="p-input-filled">
-            <input pInputText type="text" name="username" [(ngModel)]="user.username">
+            <input pInputText type="text" formControlName="email">
         </div>
     </div>
     <div class="p-offset-3"></div>
@@ -27,3 +27,7 @@
     </div>
 </section>
 </form>
+
+<p>[{{first_name}}]</p>
+<p>({{myForm.get('first_name').value}})</p>
+<p>## {{userForm.form.email}}</p>

@@ -84,11 +84,12 @@
 <div class='p-col-12'>
     <p-table #pt id="permits_Id" class="sticky-table" 
         [value]='data' [loading]="loading"
+        [resizableColumns]="true"
         selectionMode="single" [(selection)]="selectedRow"
         (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
         [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
         [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
-        [globalFilterFields]="['emp_full_name', 'plate_number']"
+        [globalFilterFields]="['title']"
         rowHover="true">
 
         <ng-template pTemplate="caption">
@@ -115,7 +116,7 @@
                         </div>
                         <button pButton type="button" label="Submit"></button>
                     </div>
-                </div>                    
+                </div>
                 <!--
                 <div class='p-col-12'>
                     <ul class="navList">
@@ -126,45 +127,22 @@
                     </ul>
                 </div>
                 -->
-            </div>                
+            </div>
         </ng-template>
 
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:4em">#</th>
-                <th pSortableColumn="emp_full_name">
-                    Name
-                    <p-sortIcon field="emp_full_name" 
-                        ariaLabel="Activate to sort" 
-                        ariaLabelDesc="Sort Employees in descending order" 
-                        ariaLabelAsc="Sort Employees in ascending order">
-                    </p-sortIcon>
-                </th>
-                <th pSortableColumn="plate_number">Plate
-                    <p-sortIcon field="plate_number" 
-                        ariaLabel="Activate to sort" 
-                        ariaLabelDesc="Activate to sort in descending order" 
-                        ariaLabelAsc="Activate to sort in ascending order">
-                    </p-sortIcon>
-                </th>
-                <th style="width:9em">Zone</th>
+                <th>#</th>
+                <th pResizableColumn>User</th>
+                <th pResizableColumn>ToDo</th>
             </tr>
         </ng-template>
 
         <ng-template pTemplate='body' let-rowData let-ri='rowIndex'>
             <tr [pSelectableRow]="rowData">
                 <td>{{ri + 1}}</td>
-                <td>
-                    {{rowData.emp_full_name | titlecase}} ({{rowData.user_id}}) [{{rowData.opp_id}}]
-                    <p style='font-size:smaller; text-indent:1rem; margin-bottom:0;'>
-                        {{rowData.emp_title}}
-                        <span *ngIf="!((rowData.emp_team_unit == null) || (rowData.emp_team_unit == ''))">
-                            @{{rowData.emp_team_unit}}
-                        </span>
-                    </p>                
-                </td>
-                <td>{{rowData.plate_number}}</td>
-                <td>{{rowData.parking_zone_name}}</td>
+                <td>{{rowData.userId}}</td>
+                <td>{{rowData.title}}</td>
             </tr>
         </ng-template>
     </p-table>

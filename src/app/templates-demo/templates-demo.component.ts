@@ -23,12 +23,14 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit, AfterConte
   public displayCBGOptions:boolean = false;
   public displayDocServiceOptions:boolean = false;
   public displayTemplate:TemplateRef<any> = null;
-  public dispTemp = '';
+  public dispCatForm:any;
 
   public parentFG:FormGroup = null;
   public docservicesFG:FormGroup = null;
   public optsYN:SelectItem[] = [ {value:'no', label:'No'}, {value:'yes', label:'Yes'}];
   public optsYNOther:SelectItem[] = [ {value:'no', label:'No'}, {value:'yes', label:'Yes'}, {value:'other', label:'Other'}];
+
+  public location:any;
 
   constructor(
     private fb: FormBuilder
@@ -44,21 +46,21 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit, AfterConte
   
 // ============================================================================
   onSubmit(evt) {
+    // CBG: [3,4]; DocServices: [12]
     //console.log('onSubmit:', evt);
-    console.log('onSubmit:', this.parentFG);
+    console.log('onSubmit:', this.parentFG.controls);
   }
 
   selectCategory(evt:SelectItem) {
     let catId = evt.value;
-    console.log('selectCategory:', evt);
-
+    console.log('selectCategory:', catId);
+    this.location = Math.random();
     this.products = this.productsAll.filter(e => e.ticket_cat_id === catId);
 
     if(catId === 12) {
-      this.displayTemplate = this.docservicesOptionsTemplateRef;
-      this.dispTemp = 'docservices';
+      this.docservicesFG.get('fc_dsIsBound').disable( {onlySelf:true, emitEvent:false} );
     } else {
-      this.displayTemplate = this.defaultTemplateRef;
+      
     }
   }
   selectProduct(evt:SelectItem) {
@@ -70,9 +72,11 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit, AfterConte
     this.productsAll = (productsJson as any).default;
     console.log(this.categories);
 
+    this.location = Math.random();
     this.docservicesFG = this.fb.group( {
       'fc_dsCBGContractNo': [''],
       'fc_dsIsFullSize': ['', [Validators.required] ],
+      'fc_dsOtherSize': ['', [Validators.required] ],
       'fc_dsIsDoubleSided': [''],
       'fc_dsIsBound': ['', ],
       'fc_dsIsStapled': [''],
@@ -83,6 +87,7 @@ export class TemplatesDemoComponent implements OnInit, AfterViewInit, AfterConte
     this.parentFG = this.fb.group({
       'fc_username': ['', [Validators.required]],
       'fc_email': ['' ],
+      'fc_xtraField': [''],
       'docservices': this.docservicesFG
     });
   }

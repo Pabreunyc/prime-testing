@@ -1,0 +1,76 @@
+<ng-container [formGroup]="form">
+  <ng-container 
+     *ngTemplateOutlet="formItemTemplate; context:{ $implicit: 0, group: form }">
+  </ng-container>
+
+  <ng-template #formItemTemplate let-i let-group="group">
+      <fieldset *ngIf="i < pathSegments.length - 1" class="form-group">
+        <legend>{{ pathSegments[i] }}</legend>
+        <ng-container 
+          *ngTemplateOutlet="formItemTemplate; 
+          context:{ $implicit: i + 1, group: group.get(pathSegments[i]) }">
+        </ng-container>
+      </fieldset>
+
+      <div *ngIf="i + 1 === pathSegments.length" class="form-control" [formGroup]="group">
+        <label>{{pathSegments[pathSegments.length - 1]}}</label>
+        <input [formControlName]="pathSegments[pathSegments.length - 1]"/>
+      </div>
+  </ng-template>
+</ng-container>
+==================================================================
+export class AppControlComponent {
+
+    @Input() form: FormGroup;
+  
+    @Input()
+    set path(path: string) {
+      this.pathSegments = path.split('.');
+    }
+    pathSegments: string[] = [];
+  
+    constructor() { }
+  }
+  
+  
+  @Component({
+    selector: 'app-root',
+    template: `
+      <form [formGroup]="questionForm">
+        <h1>Question Form</h1>
+  
+        <form-item [form]="questionForm" path="question"></form-item>
+        <form-item [form]="questionForm" path="answers.answer1"></form-item>
+        <form-item [form]="questionForm" path="answers.answer2"></form-item>
+        <form-item [form]="questionForm" path="answers.answer3"></form-item>
+  
+        <button type="submit">submit</button>
+  
+        <pre>{{questionForm.value | json}}</pre>
+      </form>
+    `,
+  })
+  export class AppComponent {
+    private questionForm: FormGroup;
+  
+    constructor(private fb: FormBuilder) {
+      this.questionForm = this.fb.group({
+        question: ['', Validators.required],
+        answers: this.fb.group({
+          answer1: ['', Validators.required],
+          answer2: ['', Validators.required],
+          answer3: ['', Validators.required],
+        }),
+      });
+    }
+  }
+  
+  @NgModule({
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+    declarations: [
+      AppComponent,
+      AppControlComponent
+    ],
+    bootstrap: [AppComponent]
+  })
+  export class AppModule {}

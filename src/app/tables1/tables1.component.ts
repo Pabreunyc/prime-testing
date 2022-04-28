@@ -64,25 +64,19 @@ export class Tables1Component implements OnInit {
   private _init() {
     this.loading = true;
 
+    this.ds.getCapitalArchivesData().subscribe(
+      d => { console.log(d); }
+    );
+
     parking_zone_id: 6
     parking_zone_name: "Mets Lot"
 
     this.ds.getList().pipe(
-      tap(console.log),
       finalize( () => { this.loading = false;} )
     ).subscribe(
       (resp) => {
         console.log('getList', resp);
-        this._data = [...resp.wi_plates, ...resp.wo_plates]; 
-        this.data = [...resp.wi_plates, ...resp.wo_plates];
-        //parking_zone_id: 6; parking_zone_name: "Mets Lot"
-        
-        this.parkingZones  = []
-        let pz = new Set( this.data.map(e => e.parking_zone_name).sort() )
-          .forEach( z => {
-            if(typeof z === 'string') this.parkingZones.push({label:z, value:z});
-          } );
-        console.log(this.parkingZones);
+        this.data = resp;
       }
     );
 

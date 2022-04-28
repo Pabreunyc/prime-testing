@@ -31,6 +31,10 @@ export class DataService {
     return this.http.get('http://localhost:8080/cars/cart/paul.abreu');
   }
 
+  public getCapitalArchivesData() {
+    return this.http.get('/assets/data/capital-archives-search.json');
+  }
+
   public initBSubject():void {
     this._data.next(this._dataStore);
   }

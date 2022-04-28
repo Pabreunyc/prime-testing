@@ -1,0 +1,30 @@
+<div class="p-col-8" id="formContainerID">
+    
+    <h5>Templates:</h5>
+
+    <section class="p-grid p-nogutter p-fluid">
+        <div class="p-col">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                <input type="text" pInputText placeholder="Username" formControlName="fc_username">
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
+                <input type="text" pInputText placeholder="E-Mail" formControlName="fc_email">
+            </div>
+        </div>
+    </section>
+
+    <section class="p-grid p-nogutter p-fluid" *ngIf="dispTemp === 'docservices'">
+        <div class="p-col-12" >
+            <ng-container [ngTemplateOutlet]="docservicesOptions"  [ngTemplateOutletContext]="{form:parentFG}"></ng-container>
+        </div>
+    </section>
+
+    <section class="p-grid p-nogutter p-fluid">
+        <div class="p-col-12">
+            <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
+        </div>
+    </section>

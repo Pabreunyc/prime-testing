@@ -1,6 +1,7 @@
+<form #ngForm="ngForm" [formGroup]="parentFG" (ngSubmit)='onSubmit($event)'>
 <section class="p-grid p-nogutter p-fluid">
-    <div class="p-col-4" style="border:1px solid black">
-        <p-dropdown id="categoryId" 
+    <div class="p-col-4" style="border:1px solid black; padding:8px;">
+        <p-dropdown id="categoryId" #categoryRef
             [options]="categories" optionLabel="ticket_cat_detail" optionValue="ticket_cat_id"
             placeholder="-- Select --" [showClear]="true"
             (onChange)='selectCategory($event)'>
@@ -10,58 +11,61 @@
             placeholder="-- Select --" [showClear]="true"
             (onChange)='selectProduct($event)'>
         </p-dropdown>
+        <p>
+            [{{categoryRef.value}}] -- [{{location}}]
+        </p>
+        <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
     </div>
 
-    
-    <div class="p-col-8" id="formContainerID">
-    <form #ngForm="ngForm" [formGroup]="parentFG" (ngSubmit)='onSubmit($event)'>
-        <h5>Templates:</h5>
-
-        <section class="p-grid p-nogutter p-fluid">
-            <div class="p-col">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
-                    <input type="text" pInputText placeholder="Username" formControlName="fc_username">
-                </div>
-            </div>
-            <div class="p-col">
-                <div class="p-inputgroup">
-                    <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
-                    <input type="text" pInputText placeholder="E-Mail" formControlName="fc_email">
-                </div>
-            </div>
-        </section>
-
-        <section class="p-grid p-nogutter p-fluid" *ngIf="dispTemp === 'docservices'">
-            <div class="p-col-12" >
-                <ng-container [ngTemplateOutlet]="docservicesOptions"  [ngTemplateOutletContext]="{form:parentFG}"></ng-container>
-            </div>
-        </section>
-
-        <section class="p-grid p-nogutter p-fluid">
-            <div class="p-col-12">
-                <button pButton type="submit" class="p-button-raised p-button-rounded" label="Send It!"></button>
-            </div>
-        </section>
-    </form>
+    <div class="p-col-8" style="border:1px solid black; padding:8px;">
+        <ng-container [ngSwitch]="categoryRef.value">
+            <ng-container *ngSwitchCase="3">3!</ng-container>
+            <ng-container *ngSwitchCase="4">
+                <ng-container *ngTemplateOutlet="cbg2Options; context: { loc:location }"></ng-container>
+            </ng-container>
+            <ng-container *ngSwitchCase="12">
+                <ng-container *ngTemplateOutlet="docservicesOptions; context: { formGroup:docservicesFG }"></ng-container>
+            </ng-container>
+            <ng-container *ngSwitchDefault>Default Case...</ng-container>
+        </ng-container>
     </div>
 </section>
+</form>
 
 <!-- ============================== -->
-<ng-template #docservicesOptions let-form="form">
-    <section class="p-grid" style="border:1px solid salmon; width: 98%; margin: 0 auto;">
-        <div class="p-12">{{form |json}}</div>
+<ng-template #docservicesOptions let-fg="formGroup">
+    <section class="p-grid" style="border:1px solid salmon; width: 98%; margin: 0 auto;" [formGroup]="fg">
         <div class="p-col-6">
             <label for="paperSizeID">Full/Half/Custom Size</label>
         </div>
         <div class="p-col-6">
-            <p-dropdown [options]="optsYNOther" placeholder="Select" [showClear]="true" formControl="docservices.fc_dsIsFullSize">
+            <p-dropdown [options]="optsYNOther" placeholder="Select" [showClear]="true" formControlName="fc_dsIsFullSize" #dsIsFullSizeRef>
+            </p-dropdown>
+            <input type="number" pInputText placeholder="Size:" formControlName="fc_dsOtherSize"  [hidden]="dsIsFullSizeRef.value!=='other'">
+        </div>
+        <!-- ---------------------- -->
+        <div class="p-col-6">
+            <label for="paperSizeID">Single/Doubled Sided?</label>
+        </div>
+        <div class="p-col-6">
+            <p-dropdown [options]="optsYN" placeholder="Select" [showClear]="true" formControlName="fc_dsIsDoubleSided">
             </p-dropdown>
         </div>
+        <!-- ---------------------- -->
+        <div class="p-col-6">
+            <label for="paperSizeID">Bound?</label>
+        </div>
+        <div class="p-col-6">
+            <p-dropdown [options]="optsYN" placeholder="Select" [showClear]="true" formControlName="fc_dsIsBound">
+            </p-dropdown>
+        </div>
+        <!-- ---------------------- -->
+        <!-- ---------------------- -->
     </section>
 </ng-template>
 <!-- ============================== -->
-<ng-template #all_platesTemplate>
+<ng-template #cbg2Options let-locIn="loc">
+    <p>LocIn: {{locIn}}</p>
     <p>Everything is here! Everything is here! Everything is here! Everything is here!</p>
 </ng-template>
 <!-- ============================== -->

@@ -14,6 +14,7 @@ import { Tables1Component } from './tables1/tables1.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { TemplatesDemoComponent } from './templates-demo/templates-demo.component';
 import { FormsComponent } from './forms/forms.component';
+import { ContextTestComponent } from './forms/context-test/context-test.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsComponent } from './forms/forms.component';
     HomeComponent,
     NotfoundComponent,
     TemplatesDemoComponent,
-    FormsComponent
+    FormsComponent,
+    ContextTestComponent
   ],
   imports: [
     BrowserModule,

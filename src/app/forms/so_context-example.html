@@ -1,0 +1,46 @@
+<!--
+    https://stackoverflow.com/questions/48810491/how-to-pass-context-to-angular-5-template-from-ngif
+-->
+<!-- Example ngFor -->
+<mat-list-item
+    *ngFor="let location of locations$; let l = index"
+    [ngSwitch]="location.type"
+    >
+    <!-- ngSwitch could be ngIf on each node according to needs & readability -->
+
+    <!-- Create ngTemplateOutlet foreach switch case, pass context -->
+    <ng-container *ngSwitchCase="'input'">
+        <ng-container 
+            *ngTemplateOutlet="inputField; context: { location: location, placeholder: 'Irrigation Start', otherOptions: 'value123' }">
+        </ng-contaier>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'select'">
+        <ng-container 
+            *ngTemplateOutlet="selectField; context: { location: location, selectSpecificOptions: 'scope.someSelectOptions' }">
+        </ng-contaier>
+    </ng-container>
+
+    <!-- ngSwitchCase="'others'", etc. -->
+
+</mat-list-item>
+
+
+
+<!-- Shared ngTemplates & note let-[variable] to read context object into scope -->
+<ng-template 
+    #inputField 
+    let-location="location"
+    let-placeholder="placeholder
+    let-otherOptions="otherOptions"
+    <!-- Context is now accessible using let-[variable] -->
+    INPUT: {{ location.value }} {{ placeholder }} {{ otherOptions }}
+</ng-template>
+
+<ng-template 
+    #selectField 
+    let-location="location"
+    let-options="selectSpecificOptions"
+    <!-- Context is now accessible using let-[variable] -->
+    SELECT: {{ location.value }} {{ options }}
+</ng-template>

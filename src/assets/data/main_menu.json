@@ -1,0 +1,214 @@
+[
+    {
+      "menu":"Admin",
+      "perm":["Admin","UnifierHelpdeskAdmin"],
+      "items":[
+        {
+          "item":"Edit Users",
+          "link":"/admin/useredit",
+          "perm":["Admin","UnifierHelpdeskAdmin"]
+        },
+        {
+          "item":"Edit Roles",
+          "link":"/admin/roleedit",
+          "perm":["Admin"]
+        },
+        {
+          "item":"System Logs",
+          "link":"/admin/systemlogs",
+          "perm":["Admin"]
+        }
+      ]
+    },
+    {
+      "menu":"S&A Application",
+      "perm":"SAInventory",
+      "items":[
+        {
+          "item":"Contract Book Generator",
+          "link":"/cbg",
+          "perm": ["Admin"]
+        },
+        {
+          "item":"Dashboard",
+          "link":"/dashboard-spagobi",
+          "perm": ["Admin"]
+        },
+        {
+          "item":"Manual Library",
+          "link":"/mlibrary",
+          "perm": ["Admin"]
+        },
+        {
+          "item":"Captial Archive Search Engine",
+          "link":"/case/cas",
+          "perm": ["CapitalArchive","CapitalArchiveAdmin"]
+        },
+        {
+          "item":"Asset Management Tool",
+          "link": "",
+          "perm": ["SAInventoryAdmin"],
+          "items": [
+            {
+              "item":"Issue Equipment",
+              "link":"/sainventory/issue-equipment",
+              "perm": ["SAInventoryAdmin"]
+            },
+            {
+              "item":"Equipment Management",
+              "link":"/sainventory/inventory",
+              "perm": ["SAInventoryAdmin"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "menu":"Dashboard",
+      "perm":"Dashboard",
+      "items":[
+        {
+          "item":"Main",
+          "link":"/dashboard"
+        },
+        {
+          "item":"Polar",
+          "link":"/dashboard/polar"
+        },
+        {
+          "item":"Active Projects",
+          "link":"/dashboard/active"
+        }
+      ]
+    },
+    {
+      "menu":"Capital Archive",
+      "perm":["CapitalArchive","Mapfile"],
+      "items":[
+        {
+          "item":"Mapfile/Research Requests Log",
+          "link":"/case/mapfile-comp",
+          "perm":["Mapfile"]
+        },
+        {
+          "item":"Documents Services Requests Log",
+          "link":"/case/blueprint",
+          "perm":["Mapfile"]
+        },
+        {
+          "item":"Photo Archives Requests Log",
+          "link":"/case/photofile",
+          "perm":["Mapfile"]
+        },
+        {
+          "_item":"SARRS",
+          "_link":"/case/sarrs"
+        }
+      ]
+    },
+    {
+      "menu":"Helpdesk",
+      "perm":"Helpdesk",
+      "items":[
+        {
+          "_item":"Helpdesk Tickets - Old Version",
+          "_link":"/helpdesk",
+          "_perm": ["Admin"]
+        },
+        {
+          "item": "Olmsted Helpdesk Tickets",
+          "link": "/helpdesk/helpdesk-b"
+        },
+        {
+          "item":"Olmsted Maintenance Logs",
+          "link":"/helpdesk/maintenance",
+          "perm": ["HelpdeskAdmin", "OpHelpdeskAdmin"]
+        },
+        {
+          "item":"Olmsted Parking Permits (Admin)",
+          "link":"/helpdesk/parking",
+          "perm": ["HelpdeskAdmin", "OpHelpdeskAdmin"]
+        }
+      ]
+    },  
+    {
+      "menu":"Capital Fiscal Management ",
+      "perm":"SPROUT",
+      "items":[
+        {
+          "item":"FMS Lookup – Type A",
+          "link":"/sprout/fmslookup",
+          "perm": ["Retired"]
+        },
+        {
+          "item":"FMS Lookup",
+          "link":"/sprout/fmslookup-typeb"
+        },
+        {
+          "item":"Transfer Requested",
+          "link":"/sprout/fund-transfer",
+          "perm": ["SproutAdmin", "SproutSubAdmin", "SproutProjectAdmin", "SproutTransferApprover"]
+        },
+        {
+          "item":"CP / CS-70",
+          "link":"/sprout/cp-cs70",
+          "perm": ["Admin"]
+        },
+        {
+          "item":"CP / CS-70 - Type B",
+          "link":"/sprout/cp-cs70-typeb",
+          "perm": ["Retired"]
+        }
+      ]
+    },
+    {
+      "menu":"IFA",
+      "perm":["IFAAdmin", "IFASubAdmin", "IFA", "OMBAdmin"],
+      "items":[
+        {
+          "item":"IFA Lookup",
+          "link": "/ifa/ifalookup",
+          "perm": ["IFAAdmin", "IFASubAdmin"]
+        },
+        {
+          "item":"IFA Justification",
+          "link":"/ifa/ifa-justification",
+          "perm": ["IFAAdmin", "IFASubAdmin", "IFA", "OMBAdmin"]
+        },
+        {
+          "item":"Unvouchered",
+          "link":"/ifa/unvouchered",
+          "perm": ["IFAAdmin", "IFASubAdmin"]
+        },
+        {
+          "item":"IFA Deactivations",
+          "link":"/ifa/ifa-deactivations",
+          "perm": ["IFAAdmin", "IFASubAdmin"]
+        }
+      ]
+    },
+    {
+      "menu":"Architecture & Engineering",
+      "perm":"ArchEng",
+      "items":[
+        {
+          "item":"Interagency Project Tracker",
+          "link": "/archeng/interagency-tracker"
+        }
+      ]
+    },  
+    {
+      "menu":"Test-Data",
+      "perm":"TestData",
+      "items":[
+        {
+          "item":"Test 1",
+          "link":"/test"
+        },
+        {
+          "item":"Test 2",
+          "link":"test/detail"
+        }
+      ]
+    }
+  ]

@@ -7,8 +7,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public getScreenWidth;
-  public getScreenHeight;
+  public getScreenWidth=0;
+  public getScreenHeight=0;
   
   constructor() {
 
@@ -21,10 +21,12 @@ export class AppComponent {
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
+    /*
     console.log( `RESIZE: ${this.getScreenWidth} x ${this.getScreenHeight}` );
-    console.log( `AVAIL: ${window.screen.availWidth}`);
+    console.log( `AvailWidth: ${window.screen.availWidth}`);
     console.log( `DPI: ${window.devicePixelRatio}`);
-    console.log( `SCREEN: ${window.screen}`);
+    */
+    //console.log( `SCREEN: ${window.screen}`);
 
   }
 }

@@ -1,0 +1,4 @@
+:host ::ng-deep .p-menubar .p-menuitem {
+    /* background-color: aquamarine; */
+    padding:0 !important;
+}

@@ -15,6 +15,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { TemplatesDemoComponent } from './templates-demo/templates-demo.component';
 import { FormsComponent } from './forms/forms.component';
 import { ContextTestComponent } from './forms/context-test/context-test.component';
+import { MenunavComponent } from './menunav/menunav.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ContextTestComponent } from './forms/context-test/context-test.componen
     NotfoundComponent,
     TemplatesDemoComponent,
     FormsComponent,
-    ContextTestComponent
+    ContextTestComponent,
+    MenunavComponent
   ],
   imports: [
     BrowserModule,

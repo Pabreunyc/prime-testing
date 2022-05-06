@@ -4,45 +4,41 @@ import { MenuItem } from 'primeng/api';
 import { tap } from 'rxjs/operators';
 
 interface ISubMenuItems {
-  item: string,
-  link: string,
-  perm: string | Array<string>
-  items?: [],
-};
+  item: string;
+  link: string;
+  perm: string | Array<string>;
+  items?: [];
+}
 
 @Component({
   selector: 'app-menunav',
   templateUrl: './menunav.component.html',
-  styleUrls: ['./menunav.component.css']
+  styleUrls: ['./menunav.component.css'],
 })
 export class MenunavComponent implements OnInit, OnDestroy {
-
   public menu: MenuItem[];
 
-  constructor(
-    private http:HttpClient
-  ) { }
-  
+  constructor(private http: HttpClient) {}
+
   ngOnInit(): void {
     console.log('%cMenunavComponent', 'background-color:green; color:white;');
     this._init();
   }
   ngOnDestroy(): void {
-    console.log('%cMenunavComponent', 'background-color:red; color:white;')
+    console.log('%cMenunavComponent', 'background-color:red; color:white;');
   }
-// ============================================================================
+  // ============================================================================
   menuCommand(evt) {
     console.log('menuCommand:', evt);
   }
-// ============================================================================
+  // ============================================================================
   private _init() {
-    this.http.get<any[]>('/assets/data/main_menu.json')
-      .subscribe(m =>{
+    this.http.get<any[]>('/assets/data/main_menu.json').subscribe((m) => {
       console.log('main_menu:', m);
       let submenu = [];
-      this.menu = m.map( e => {
+      this.menu = m.map((e) => {
         submenu = this.createSubmenu(e.items);
-        return { label:e.menu, items:submenu }
+        return { label: e.menu, items: submenu };
       });
       /*
       this.menu  = [
@@ -70,17 +66,17 @@ export class MenunavComponent implements OnInit, OnDestroy {
     });
   }
 
-  private createSubmenu(items:ISubMenuItems[]):Array<any> {
-    let ret = items.map( i => {
+  private createSubmenu(items: ISubMenuItems[]): Array<any> {
+    let ret = items.map((i) => {
       let subsub = [];
-      if(i?.items && i.items.length) {
+      if (i?.items && i.items.length) {
         subsub = this.createSubmenu(i.items);
       }
 
-      if(subsub.length) {
-        return { label:i.item, items:subsub };
+      if (subsub.length) {
+        return { label: i.item, items: subsub };
       } else {
-        return { label:i.item, routerLink:i.link }
+        return { label: i.item, routerLink: i.link };
       }
     });
     return ret;

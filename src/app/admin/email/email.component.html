@@ -1,0 +1,29 @@
+<main style="border:1px solid red; width: 90%;" class="p-grid">
+    <div class="p-col-12 p-lg-4">
+        <p-table #pt id="emailTemplates_Id" class="sticky-table" 
+            [value]='templates' [loading]="loading"
+            [resizableColumns]="true"
+            selectionMode="single" [(selection)]="selectedRow"
+            (onRowSelect)="onSelectTemplate($event)" (onRowUnselect)="onRowUnSelect($event)"
+            rowHover="true">
+
+            <ng-template pTemplate="body" let-rowData let-ri='rowIndex'>
+                <tr [pSelectableRow]="rowData">
+                    <td>
+                        {{rowData.filename}}  [{{rowData.size}}]<br />
+                        <span style="padding-left:1rem">{{rowData.ctime | date:'medium'}}</span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="p-col-12 p-lg-8">
+        <pre>
+{{selectedTemplate}}
+        </pre>
+        <ol>
+            <li *ngFor="let v of templateVars">{{v}}</li>
+        </ol>
+    </div>
+</main>

@@ -23,9 +23,18 @@ export class EmailService {
     return of( {status:true, res:Math.random} );
   }
 
+  /**
+   * 
+   * @returns 
+   */
   getTemplates() {
     return this.http.get(API + '/adminv3/misc/emailTemplates', {headers});
   }
+  /**
+   * 
+   * @param templateName 
+   * @returns 
+   */
   getTemplate(templateName) {
     return this.http.get(API + '/adminv3/misc/emailTemplate/' + templateName, {headers} );
   }

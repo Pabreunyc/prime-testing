@@ -23,6 +23,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 // ============================================================================
 // ============================================================================
   private _init() {
-
+    this.routes = ['cp','admin','helpdesk','forms','forms-context','menu','tables','templates'];
   }
 }

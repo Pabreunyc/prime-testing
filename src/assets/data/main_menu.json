@@ -111,13 +111,8 @@
       "perm":"Helpdesk",
       "items":[
         {
-          "_item":"Helpdesk Tickets - Old Version",
-          "_link":"/helpdesk",
-          "_perm": ["Admin"]
-        },
-        {
           "item": "Olmsted Helpdesk Tickets",
-          "link": "/helpdesk/helpdesk-b"
+          "link": "/helpdesk"
         },
         {
           "item":"Olmsted Maintenance Logs",

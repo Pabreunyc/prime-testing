@@ -1,4 +1,4 @@
-import { Component, HostListener, VERSION } from '@angular/core';
+import { Component, HostListener, OnInit, VERSION } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 @Component({
@@ -6,13 +6,18 @@ import { environment } from 'src/environments/environment';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   public getScreenWidth=0;
   public getScreenHeight=0;
+  public routes: string[];
   
   constructor() {
-
   }
+  ngOnInit(): void {
+    console.log('%cAppComponent', 'background:green;color:white;')
+    this.routes = ['cp','admin','helpdesk','forms','forms-context','menu','tables','templates'];
+  }
+
   //title = 'prime-testing';
   public title = environment.appTitle;
   public version = VERSION.full;

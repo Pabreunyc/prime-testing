@@ -15,6 +15,8 @@ export const routes: Routes = [
   { path:'cp', loadChildren: () => import('./child-parent/child-parent.module').then(m => m.ChildParentModule) },
   { path:'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path:'helpdesk', loadChildren: () => import('./helpdesk/helpdesk.module').then(m => m.HelpdeskModule) },
+  { path:'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+
   { path:'forms', component:FormsComponent },
   { path: 'forms-context', component:ContextTestComponent },
   { path:'menu', component:MenunavComponent },

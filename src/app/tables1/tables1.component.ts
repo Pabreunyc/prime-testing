@@ -1,16 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../_services/data.service';
 import { finalize, tap } from 'rxjs/operators';
 import { FilterService, SelectItem } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-tables1',
   templateUrl: './tables1.component.html',
   styleUrls: ['./tables1.component.css']
 })
-export class Tables1Component implements OnInit { 
+export class Tables1Component implements OnInit, OnDestroy, AfterViewInit { 
+  @ViewChild('pt') dataTableRef:Table;
   private _data;
   public data;
+  public data$:Observable<any> = null;
+
+  public tableDef = {
+    dataKey:'',
+    cols: []
+  };
   public plateStatusSelect:SelectItem[] = [{value:"wi_plates", label:"Wi. Plates"}, {value:"wo_plates", label:"W/O Plates"}, {value:"", label:"All"}];
   public employeeTypeSelect:SelectItem[] = [{label:'All', value:'all'}, {label:'Employee',value:'employee'}, {label:'Non',value:'non'}];
   public parkingZones = [];
@@ -23,12 +32,22 @@ export class Tables1Component implements OnInit {
     private filterService: FilterService
   ) { }
 
+  ngAfterViewInit(): void {
+    console.log('afterViewInit:', this.dataTableRef);
+  }
   ngOnInit(): void {
     console.log('%cTables1Component', 'background-color:green;color:white;');
     this._init();
-
+  }
+  ngOnDestroy(): void {
+    console.log('%cTables1Component', 'background-color:red;color:white;');
   }
 // ============================================================================
+  public exportToExcel() {
+    console.log('Exporting to Excel');
+    this.dataTableRef.exportCSV();
+  }
+
   public filterByParkingZone(e) {
     console.log('filterByParkingZone', {e});
   }
@@ -63,6 +82,11 @@ export class Tables1Component implements OnInit {
 // ============================================================================
   private _init() {
     this.loading = true;
+    this._initTable();
+
+    this.data$ = this.ds.getGithubData({url:'repos'}).pipe(
+      tap(console.log)
+    );
 
     this.ds.getCapitalArchivesData().subscribe(
       d => { console.log(d); }
@@ -95,5 +119,18 @@ export class Tables1Component implements OnInit {
         return true;
       }
     });
+  }
+  private _initTable() {
+    this.tableDef = {
+      "dataKey": "node_id",
+      "cols": [
+        {header:"Name", field:"name", sortable:"true", resizeable:"", type:"string"},
+        {header:"Description", field:"description", sortable:"", resizeable:"true", type:"string"},
+        {header:"Language(s)", field:"language", sortable:"", resizeable:"", type:"string"},
+        {header:"Created", field:"created_at", sortable:"", resizeable:"", type:"date"},
+        {header:"Project Size", field:"size", sortable:"", resizeable:"", type:"number"},
+        {header:"Private", field:"private", sortable:"", resizeable:"", type:"string"},
+      ]
+    };
   }
 }

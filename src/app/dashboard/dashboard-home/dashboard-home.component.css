@@ -1,0 +1,8 @@
+.container {
+    border:1px solid lightcoral;
+}
+.card {
+    border:1px solid lightseagreen;
+    text-align: center;
+    max-width: max-content;
+}

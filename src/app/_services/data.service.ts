@@ -31,10 +31,20 @@ export class DataService {
     return this.http.get('http://localhost:8080/cars/cart/paul.abreu');
   }
 
+  public getDesignData() {
+    return this.http.get('/assets/data/design_active_projects_detail_rev01.json');
+  }
+
   public getCapitalArchivesData() {
     return this.http.get('/assets/data/capital-archives-search.json');
   }
 
+  public getGithubData({user='google', url=''}) {
+    let ep = `https://api.github.com/orgs/${user}`;
+    ep = url.trim() === '' ? ep : `${ep}/${url}`;
+    return this.http.get(ep);
+  }
+  // ------------------------------------------------------------------------------------------
   public initBSubject():void {
     this._data.next(this._dataStore);
   }

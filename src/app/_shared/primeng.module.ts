@@ -68,7 +68,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { FieldsetModule } from 'primeng/fieldset';
 //import { AutoCompleteModule } from 'primeng/autocomplete';
-//import { ChartModule } from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   exports: [
@@ -79,6 +79,7 @@ import { FieldsetModule } from 'primeng/fieldset';
     ButtonModule,
     CalendarModule,
     CardModule,
+    ChartModule,
     CheckboxModule,
     ContextMenuModule ,
     CodeHighlighterModule,

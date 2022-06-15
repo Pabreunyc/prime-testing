@@ -1,0 +1,15 @@
+<section class="p-grid">
+    <div class="p-col-12">
+        <ul>
+            <li><a (click)="display('active', 'summary')">Active Projects</a></li>
+        </ul>
+    </div>
+</section>
+
+<ng-template [ngIf]="mode=='summary'">
+    {{mode}}
+    <app-data-chart [x]="data"></app-data-chart>
+</ng-template>
+<ng-template [ngIf]="mode=='detail'">
+    <span>[{{mode}}]]</span>
+</ng-template>

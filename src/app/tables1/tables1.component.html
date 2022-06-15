@@ -1,89 +1,9 @@
-<main class='p-grid'>
+<main class='p-grid p-nogutter'>
 
 <div class='p-col-12'>
-    <div class="p-formgroup-inline">
-        <div class="p-field">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-                <input type="text" pInputText placeholder="Name, Plate" 
-                    (input)="pt.filterGlobal($event.target.value, 'contains')">
-            </div>
-        </div>
-        <div class="p-field">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon" style="line-height: 1.25;">W/Plates?</span>
-                <p-dropdown id="platesId" [options]="plateStatusSelect"
-                    placeholder="-- Select --" [showClear]="true"
-                    (onChange)='selectWithPlates($event.value)'>
-                </p-dropdown>
-            </div>
-        </div>
-        <div class="p-field">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon" style="line-height: 1.25;">Zone:</span>
-                <p-dropdown [options]="parkingZones"
-                    placeholder="-- Select --" [showClear]="true"
-                    (onChange)='filterByParkingZone($event)'>
-                </p-dropdown>
-            </div>
-        </div>
-        <div class="p-field">
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon">Employee:</span>
-                <p-dropdown [options]="employeeTypeSelect"
-                (onChange)="pt.filter($event.value, 'user_id', 'isEmployee')"
-                    placeholder="-- Select --" [showClear]="true">
-                </p-dropdown>
-            </div>
-        </div>
-    </div>
-</div> <!-- grid -->
-
-<div class='p-col-12'>
-    <div class='p-grid'>
-        <div class='p-col-12 p-md-12 p-lg-6 bordered'>
-            <div class="p-inputgroup">
-                <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>
-                <input type="text" pInputText placeholder="Name, Plate" 
-                    (input)="pt.filterGlobal($event.target.value, 'contains')">
-            </div>
-        </div>
-        <div class='p-col-12 p-md-12 p-lg-6 bordered'>
-            <div class="p-formgroup-inline">
-                <div class="p-field">
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon" style="line-height: 1.25;">W/Plates?</span>
-                        <p-dropdown id="platesId" [options]="plateStatusSelect"
-                            placeholder="-- Select --" [showClear]="true"
-                            (onChange)='selectWithPlates($event.value)'>
-                        </p-dropdown>
-                    </div>
-                </div>
-                <div class="p-field">
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon" style="line-height: 1.25;">Zone:</span>
-                        <p-dropdown [options]="parkingZones" optionLabel="parking_zone_name"
-                            placeholder="-- Select --" [showClear]="true"
-                            (onChange)='filterByParkingZone($event)'>
-                        </p-dropdown>
-                    </div>
-                </div>
-                <div class="p-field">
-                    <div class="p-inputgroup">
-                        <span class="p-inputgroup-addon">Employee:</span>
-                        <p-dropdown [options]="employeeTypeSelect"
-                            placeholder="-- Select --" [showClear]="true">
-                        </p-dropdown>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class='p-col-12'>
-    <p-table #pt id="permits_Id" class="sticky-table" 
-        [value]='data' [loading]="loading"
+    <p-table #pt id="permits_Id" styleClass="p-datatable-striped"
+        [value]='data$ | async' [dataKey]="tableDef?.dataKey" [columns]="tableDef?.cols"
+        [loading]="loading"
         [resizableColumns]="true"
         selectionMode="single" [(selection)]="selectedRow"
         (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
@@ -93,7 +13,7 @@
         rowHover="true">
 
         <ng-template pTemplate="caption">
-            <div class='p-grid' id="filtersRow">
+            <div class='p-grid bordered' id="filtersRow">
                 <div class="p-col-4">
                     <div class="p-inputgroup" style="float:right">
                         <span class="p-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
@@ -105,17 +25,9 @@
                     &nbsp;
                 </div>
                 <div class="p-col">
-                    <div class="p-formgroup-inline">
-                        <div class="p-field">
-                            <label for="firstname" class="p-sr-only">Firstname</label>
-                            <input id="firstname" type="text" pInputText placeholder="Firstname"> 
-                        </div>
-                        <div class="p-field">
-                            <label for="lastname" class="p-sr-only">Lastname</label>
-                            <input id="lastname" type="text" pInputText placeholder="Lastname"> 
-                        </div>
-                        <button pButton type="button" label="Submit"></button>
-                    </div>
+                    <button pButton type="button" label="Export" icon="pi pi-file-o"
+                        (click)="exportToExcel()">
+                    </button>
                 </div>
                 <!--
                 <div class='p-col-12'>
@@ -130,19 +42,26 @@
             </div>
         </ng-template>
 
-        <ng-template pTemplate="header">
+        <ng-template pTemplate="header" let-columns>
             <tr>
-                <th>#</th>
-                <th pResizableColumn>User</th>
-                <th pResizableColumn>ToDo</th>
+                <th style="width:16rem" pSortableColumn="name">Name</th>
+                <th pResizableColumn pSortableColumn="description">Description</th>
+                <th pSortableColumn="language">Language(s)</th>
+                <th>Created</th>
+                <th style="width:6rem">Project Size</th>
+                <th style="width:6rem">Private</th>
             </tr>
         </ng-template>
 
-        <ng-template pTemplate='body' let-rowData let-ri='rowIndex'>
-            <tr [pSelectableRow]="rowData">
-                <td>{{ri + 1}}</td>
-                <td>{{rowData.userId}}</td>
-                <td>{{rowData.title}}</td>
+        <ng-template pTemplate="body" let-row let-columns="columns" let-ri='rowIndex'>
+            <tr [pSelectableRow]="row">
+                    <td *ngFor="let f of columns">
+                        <div [ngSwitch]="f.type">
+                            <span *ngSwitchCase="'date'">{{row[f.field] | date}}</span>
+                            <span *ngSwitchCase="'number'">##{{row[f.field]}}</span>
+                            <span *ngSwitchDefault>{{row[f.field]}}</span>
+                        </div>
+                    </td>
             </tr>
         </ng-template>
     </p-table>

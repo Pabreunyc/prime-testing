@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
     console.log('%cAppComponent', 'background:green;color:white;')
-    this.routes = ['cp','admin','helpdesk','forms','forms-context','menu','tables','templates'];
+    this.routes = ['cp','admin','dashboard','helpdesk','forms','forms-context','menu','tables','templates'];
   }
 
   //title = 'prime-testing';

@@ -7,6 +7,7 @@ import { ParentComponent } from './parent/parent.component';
 import { Child01Component } from './child01/child01.component';
 import { Child02Component } from './child02/child02.component';
 import { Child03Component } from './child03/child03.component';
+import { Parent2Component } from './parent2/parent2.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { Child03Component } from './child03/child03.component';
     ParentComponent,
     Child01Component,
     Child02Component,
-    Child03Component
+    Child03Component,
+    Parent2Component
   ],
   imports: [
     CommonModule,

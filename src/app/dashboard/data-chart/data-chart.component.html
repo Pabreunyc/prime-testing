@@ -1,12 +1,12 @@
 <section class="p-grid p-nogutter">
     <div class="p-col-12 p-xl-6" style="border:1px solid lightgray">
-        <p-table #dataTable id="permits_Id" stleClass="p-datatable-striped"
+        <p-table #dataTable id="permits_Id" styleClass="p-datatable-striped p-datatable-sm"
             [value]='tableData?.data'
             [dataKey]="tableData?.dataKey" [columns]="tableData?.cols"
             [resizableColumns]="true"
             selectionMode="single" [(selection)]="selectedRow"
             (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
-            [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
+            [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,35,50]" 
             [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
             [globalFilterFields]="['title']"
             rowHover="true">
@@ -24,10 +24,11 @@
             </ng-template>
         </p-table>
     </div>
+    <!-- ------------------------------------------------------------------- -->
     <div class="p-col-12 p-xl-6" style="border:1px solid lightgray">
-        Two
+        <p-chart type="line" [data]="chartData.data" [options]="chartData.options"></p-chart>
     </div>
 
-    <div class="p-col-12"></div>
+    <div class="p-col-12">[ONE][TWO</div>
 </section>
 

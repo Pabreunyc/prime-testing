@@ -1,0 +1,6 @@
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+    font-size: .80rem;;
+}
+::ng-deep .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+    padding:0 0 0 .48535rem;
+}

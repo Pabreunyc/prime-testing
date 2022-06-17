@@ -14,7 +14,7 @@ export class DataChartComponent implements OnInit, OnDestroy, OnChanges {
     // cols:[],
     // data:[]
   // };
-  public chartData = {};
+  public chartData;
   public selectedRow:any = null;
 
   constructor(
@@ -31,6 +31,7 @@ export class DataChartComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges:', changes.x.currentValue);
     this.tableData = changes.x.currentValue.table;
+    this.chartData =  changes.x.currentValue.chart;
   }
 
 // ----------------------------------------------------------------------------

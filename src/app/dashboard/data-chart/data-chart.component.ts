@@ -41,6 +41,10 @@ export class DataChartComponent implements OnInit, OnDestroy, OnChanges {
   onRowUnSelect(evt:any) {
     console.log('onRowUnSelect:', evt);
   }
+
+  updateChart(evt:any) {
+    console.log('updateChart:', typeof evt, evt);
+  }
 // ----------------------------------------------------------------------------
   private _init() {
     // this.ds.getGithubData({url:'repos'}).subscribe(

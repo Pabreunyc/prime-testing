@@ -56,7 +56,7 @@ export class DesignComponent implements OnInit, OnDestroy {
         let activeProject = new DesignActiveProjects();
         this.data= {};
         this.data['table'] = activeProject.createTableData(res as Array<any>,null);
-        this.data['chart'] = activeProject.createChartData( this.data['table'].data );
+        this.data['chart'] = activeProject.createChartData( {data:this.data['table'].data, options:this.data['table'].options} );
         console.log(this.data);
       },
       err => { console.error('ERR:', err); }

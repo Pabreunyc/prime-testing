@@ -26,7 +26,10 @@
     </div>
     <!-- ------------------------------------------------------------------- -->
     <div class="p-col-12 p-xl-6" style="border:1px solid lightgray">
-        <p-chart type="line" [data]="chartData.data" [options]="chartData.options"></p-chart>
+        <p-chart
+            type="bar" (onDataSelect)="updateChart($event)"
+            [data]="chartData.data" [options]="chartData.options">
+        </p-chart>
     </div>
 
     <div class="p-col-12">[ONE][TWO</div>

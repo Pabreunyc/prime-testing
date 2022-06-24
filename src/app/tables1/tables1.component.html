@@ -1,15 +1,24 @@
 <main class='p-grid p-nogutter'>
+<div class="p-col-12">
+    <button pButton type="button" icon="pi pi-chart-bar" class="p-button-sm"
+        label="Forecast" (click)="selectView('forecast')"></button>
+    <button pButton type="button" icon="pi pi-table" class="p-button-sm"
+        label="Active" (click)="selectView('active')"></button>
+    <button pButton type="button" icon="pi pi-list" class="p-button-sm"
+        label="Current Year" (click)="selectView('three')"></button>
+</div>
 
-<div class='p-col-12'>
+<div class="p-col-2">[Something] [{{loading2}}]</div>
+<div class='p-col-10'>
     <p-table #pt id="permits_Id" styleClass="p-datatable-striped"
         [value]='data$ | async' [dataKey]="tableDef?.dataKey" [columns]="tableDef?.cols"
-        [loading]="loading"
-        [resizableColumns]="true"
+        [loading]="loading2"
+        [autoLayout]="'true'"
         selectionMode="single" [(selection)]="selectedRow"
         (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
         [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
         [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
-        [globalFilterFields]="['title']"
+        [globalFilterFields]="['description','language']"
         rowHover="true">
 
         <ng-template pTemplate="caption">

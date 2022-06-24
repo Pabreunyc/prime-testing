@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../_services/data.service';
-import { finalize, tap } from 'rxjs/operators';
+import { delay, finalize, tap } from 'rxjs/operators';
 import { FilterService, SelectItem } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Table } from 'primeng/table';
@@ -24,6 +24,7 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
   public employeeTypeSelect:SelectItem[] = [{label:'All', value:'all'}, {label:'Employee',value:'employee'}, {label:'Non',value:'non'}];
   public parkingZones = [];
   public loading:Boolean = false;
+  public loading2:Boolean = false;
   public selectedRow = null;
 
 
@@ -43,6 +44,10 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
     console.log('%cTables1Component', 'background-color:red;color:white;');
   }
 // ============================================================================
+  public selectView(view) {
+    console.log('selectView:', view);
+  }
+  
   public exportToExcel() {
     console.log('Exporting to Excel');
     this.dataTableRef.exportCSV();
@@ -82,10 +87,13 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
 // ============================================================================
   private _init() {
     this.loading = true;
+    this.loading2 = true;
     this._initTable();
 
     this.data$ = this.ds.getGithubData({url:'repos'}).pipe(
-      tap(console.log)
+      delay(2000),
+      tap(console.log),
+      tap(el => { console.log('tap'); this.loading2 = false; return el; }),
     );
 
     this.ds.getCapitalArchivesData().subscribe(

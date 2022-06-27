@@ -14,8 +14,10 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('pt') dataTableRef:Table;
   private _data;
   public data;
+  public data2;
   public data$:Observable<any> = null;
 
+  public pi = Math.PI;
   public tableDef = {
     dataKey:'',
     cols: []
@@ -47,7 +49,7 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
   public selectView(view) {
     console.log('selectView:', view);
   }
-  
+
   public exportToExcel() {
     console.log('Exporting to Excel');
     this.dataTableRef.exportCSV();
@@ -94,23 +96,24 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
       delay(2000),
       tap(console.log),
       tap(el => { console.log('tap'); this.loading2 = false; return el; }),
+      tap(el => { this._initTable2(el); return el; })
     );
 
-    this.ds.getCapitalArchivesData().subscribe(
-      d => { console.log(d); }
-    );
+    // this.ds.getCapitalArchivesData().subscribe(
+    //   d => { console.log(d); }
+    // );
 
     parking_zone_id: 6
     parking_zone_name: "Mets Lot"
 
-    this.ds.getList().pipe(
-      finalize( () => { this.loading = false;} )
-    ).subscribe(
-      (resp) => {
-        console.log('getList', resp);
-        this.data = resp;
-      }
-    );
+    // this.ds.getList().pipe(
+    //   finalize( () => { this.loading = false;} )
+    // ).subscribe(
+    //   (resp) => {
+    //     console.log('getList', resp);
+    //     this.data = resp;
+    //   }
+    // );
 
     type isEmployeeFilterT = 'all'|'employee'|'non'|'';
     this.filterService.register('isEmployee', (value:number, filter:isEmployeeFilterT): boolean => {
@@ -140,5 +143,25 @@ export class Tables1Component implements OnInit, OnDestroy, AfterViewInit {
         {header:"Private", field:"private", sortable:"", resizeable:"", type:"string"},
       ]
     };
+  }
+
+  private _initTable2(data) {
+    this.data2 = {};
+    this.data2.dataKey = 'id';
+    this.data2.filterFields = ['name', 'description'];
+    this.data2.cols = [
+      {header:'Name', field:'name', sortable:true, type:'string'},
+      {header:'Desc', field:'description', sortable:false, type:'string'},
+      {header:'Created', field:'created_at', sortable:false, type:'date'},
+      {header:'Language', field:'language', sortable:false, type:'string'},
+      {header:'Forks', field:'forks_count', sortable:false, type:'string'},
+      {header:'Forkable', field:'allow_forking', sortable:false, type:'string'},
+      {header:'Homepage', field:'homepage', sortable:false, type:'string'},
+      {header:'Visibility', field:'visibility', sortable:false, type:'string'},
+      {header:'Branch', field:'default_branch', sortable:false, type:'string'},
+      {header:'Size', field:'size', sortable:false, type:'number'},
+      {header:'Stars', field:'stargazers_count', sortable:false, type:'number'},
+    ];
+    this.data2.data = data;
   }
 }

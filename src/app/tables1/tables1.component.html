@@ -1,78 +1,141 @@
 <main class='p-grid p-nogutter'>
-<div class="p-col-12">
-    <button pButton type="button" icon="pi pi-chart-bar" class="p-button-sm"
-        label="Forecast" (click)="selectView('forecast')"></button>
-    <button pButton type="button" icon="pi pi-table" class="p-button-sm"
-        label="Active" (click)="selectView('active')"></button>
-    <button pButton type="button" icon="pi pi-list" class="p-button-sm"
-        label="Current Year" (click)="selectView('three')"></button>
+    <div class="p-col-12">
+        <button pButton type="button" icon="pi pi-chart-bar" class="p-button-sm"
+            label="Forecast" (click)="selectView('forecast')"></button>
+        <button pButton type="button" icon="pi pi-table" class="p-button-sm"
+            label="Active" (click)="selectView('active')"></button>
+        <button pButton type="button" icon="pi pi-list" class="p-button-sm"
+            label="Current Year" (click)="selectView('three')"></button>
+    </div>
+
+    <div class="p-col-2">[Something] [{{loading2}}]</div>
+    <div class='p-col-10'>
+        <p-table #pt id="permits_Id" styleClass="p-datatable-striped"
+            [value]='data$ | async' [dataKey]="tableDef?.dataKey" [columns]="tableDef?.cols"
+            [loading]="loading2"
+            [autoLayout]="'true'"
+            selectionMode="single" [(selection)]="selectedRow"
+            (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
+            [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
+            [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
+            [globalFilterFields]="['description','language']"
+            rowHover="true">
+
+            <ng-template pTemplate="caption">
+                <div class='p-grid bordered' id="filtersRow">
+                    <div class="p-col-4">
+                        <div class="p-inputgroup" style="float:right">
+                            <span class="p-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
+                            <input type="text" pInputText placeholder="Name, Plate" 
+                                (input)="pt.filterGlobal($event.target.value, 'contains')">
+                        </div>
+                    </div>
+                    <div class="p-col-4">
+                        &nbsp;
+                    </div>
+                    <div class="p-col">
+                        <button pButton type="button" label="Export" icon="pi pi-file-o"
+                            (click)="exportToExcel()">
+                        </button>
+                    </div>
+                    <!--
+                    <div class='p-col-12'>
+                        <ul class="navList">
+                            <li>First Initial:</li>
+                            <li *ngFor="let letter of letters">
+                                <span [class.active]="currentLetter==letter" (click)='filterByLetter(letter)'>{{letter}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+            </ng-template>
+
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th style="width:16rem" pSortableColumn="name">Name</th>
+                    <th pResizableColumn pSortableColumn="description">Description</th>
+                    <th pSortableColumn="language">Language(s)</th>
+                    <th>Created</th>
+                    <th style="width:6rem">Project Size</th>
+                    <th style="width:6rem">Private</th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-row let-columns="columns" let-ri='rowIndex'>
+                <tr [pSelectableRow]="row">
+                        <td *ngFor="let f of columns">
+                            <div [ngSwitch]="f.type">
+                                <span *ngSwitchCase="'date'">{{row[f.field] | date}}</span>
+                                <span *ngSwitchCase="'number'">##{{row[f.field]}}</span>
+                                <span *ngSwitchDefault>{{row[f.field]}}</span>
+                            </div>
+                        </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</main>
+
+<div class='p-grid p-nogutter'>
+    <div class="p-col-2">
+        <span>This is a <span>SPAN inside a span</span></span>
+        <p>{{pi | number}}</p>
+        <p>{{pi * 100123 | number}}</p>
+    </div>
+    <div class="p-col-10" style="border:1px solid crimson;">
+        <ng-container *ngTemplateOutlet="detailsView"></ng-container>
+    </div>
+</div>
+<div class='p-grid p-nogutter'>
+    <div class="p-col-10" style="border:1px solid greenyellow;">
+        <ng-container *ngTemplateOutlet="detailViewComponentTemplate" [ngTemplateOutletContext]="{inData:data2}"></ng-container>
+    </div>
 </div>
 
-<div class="p-col-2">[Something] [{{loading2}}]</div>
-<div class='p-col-10'>
-    <p-table #pt id="permits_Id" styleClass="p-datatable-striped"
-        [value]='data$ | async' [dataKey]="tableDef?.dataKey" [columns]="tableDef?.cols"
-        [loading]="loading2"
+<ng-template #detailsView>
+    <p-table #dataTable2 id="datable-Id" styleClass="p-datatable-striped p-datatable-sm"
+        [value]='data2?.data'
         [autoLayout]="'true'"
+        [dataKey]="data2?.dataKey" [columns]="data2?.cols"
+        [resizableColumns]="true"
         selectionMode="single" [(selection)]="selectedRow"
-        (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnSelect($event)"
-        [paginator]="true" [rows]="8" [rowsPerPageOptions]="[8,20,35,50]" 
+        (onRowSelect)="onRowSelect($event)"
+        [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10,20,35,50]" 
         [showCurrentPageReport]="true" currentPageReportTemplate="{totalRecords} entries"
-        [globalFilterFields]="['description','language']"
+        [globalFilterFields]="data2?.filterFields"
         rowHover="true">
 
         <ng-template pTemplate="caption">
-            <div class='p-grid bordered' id="filtersRow">
-                <div class="p-col-4">
-                    <div class="p-inputgroup" style="float:right">
-                        <span class="p-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
-                        <input type="text" pInputText placeholder="Name, Plate" 
-                            (input)="pt.filterGlobal($event.target.value, 'contains')">
-                    </div>
-                </div>
-                <div class="p-col-4">
-                    &nbsp;
-                </div>
-                <div class="p-col">
-                    <button pButton type="button" label="Export" icon="pi pi-file-o"
-                        (click)="exportToExcel()">
-                    </button>
-                </div>
-                <!--
-                <div class='p-col-12'>
-                    <ul class="navList">
-                        <li>First Initial:</li>
-                        <li *ngFor="let letter of letters">
-                            <span [class.active]="currentLetter==letter" (click)='filterByLetter(letter)'>{{letter}}</span>
-                        </li>
-                    </ul>
-                </div>
-                -->
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
+                <input type="text" pInputText placeholder="Description, Name" 
+                    (input)="dataTable2?.filterGlobal($event.target.value, 'contains')">
             </div>
         </ng-template>
 
         <ng-template pTemplate="header" let-columns>
             <tr>
-                <th style="width:16rem" pSortableColumn="name">Name</th>
-                <th pResizableColumn pSortableColumn="description">Description</th>
-                <th pSortableColumn="language">Language(s)</th>
-                <th>Created</th>
-                <th style="width:6rem">Project Size</th>
-                <th style="width:6rem">Private</th>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field" [pSortableColumnDisabled]="!col.sortable">
+                    {{col.header}}
+                </th>
             </tr>
         </ng-template>
-
+        
         <ng-template pTemplate="body" let-row let-columns="columns" let-ri='rowIndex'>
             <tr [pSelectableRow]="row">
-                    <td *ngFor="let f of columns">
-                        <div [ngSwitch]="f.type">
-                            <span *ngSwitchCase="'date'">{{row[f.field] | date}}</span>
-                            <span *ngSwitchCase="'number'">##{{row[f.field]}}</span>
-                            <span *ngSwitchDefault>{{row[f.field]}}</span>
-                        </div>
-                    </td>
+                <td *ngFor="let f of columns">
+                    <span [ngSwitch]="f.type">
+                        <span *ngSwitchCase="'date'">{{row[f.field] | date}}</span>
+                        <span *ngSwitchCase="'number'">{{row[f.field] | number}}</span>
+                        <span *ngSwitchDefault>{{row[f.field]}}</span>
+                    </span>
+                </td>
             </tr>
         </ng-template>
     </p-table>
-</div>
-</main>
+</ng-template>
+
+<ng-template #detailViewComponentTemplate let-inData>
+    <details-view [inData]="inData" ></details-view>
+</ng-template>

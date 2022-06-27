@@ -16,6 +16,7 @@ import { TemplatesDemoComponent } from './templates-demo/templates-demo.componen
 import { FormsComponent } from './forms/forms.component';
 import { ContextTestComponent } from './forms/context-test/context-test.component';
 import { MenunavComponent } from './menunav/menunav.component';
+import { DetailsViewComponent } from './tables1/details-view/details-view.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MenunavComponent } from './menunav/menunav.component';
     TemplatesDemoComponent,
     FormsComponent,
     ContextTestComponent,
-    MenunavComponent
+    MenunavComponent,
+    DetailsViewComponent
   ],
   imports: [
     BrowserModule,
